@@ -31,8 +31,9 @@ function App() {
     setLoading(true)
     setError('')
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const res = await axios.get(`${apiUrl}/api/ratio`, {
+      const rawUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const baseUrl = rawUrl.replace(/\/+$/, '');
+      const res = await axios.get(`${baseUrl}/api/ratio`, {
         params: { formula, range }
       })
       setData(res.data)
@@ -52,8 +53,9 @@ function App() {
     setLoading(true)
     setError('')
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const res = await axios.get(`${apiUrl}/api/tpo`, {
+      const rawUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const baseUrl = rawUrl.replace(/\/+$/, '');
+      const res = await axios.get(`${baseUrl}/api/tpo`, {
         params: { symbol: tpoSymbol, interval: tpoInterval }
       })
       setTpoData(res.data)
